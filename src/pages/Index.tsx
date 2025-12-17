@@ -138,30 +138,34 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="home" className="pt-32 pb-20 px-4">
-        <div className="container mx-auto">
-          <div className="text-center max-w-4xl mx-auto animate-fade-in">
-            <Badge className="mb-4 bg-primary/20 text-primary border-primary">
-              <Icon name="Circle" className="mr-1 fill-green-500 text-green-500" size={12} />
-              Онлайн: {serverStats.online}/{serverStats.maxPlayers}
-            </Badge>
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-              Выживай.<br />Сражайся.<br />Господствуй.
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Хардкорный PvP/PvE сервер с модами, активным комьюнити и честной администрацией
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8" onClick={() => window.open('steam://connect/your-server-ip:port', '_blank')}>
-                <Icon name="Play" className="mr-2" size={20} />
-                Начать играть
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8" onClick={() => scrollToSection('downloads')}>
-                <Icon name="Download" className="mr-2" size={20} />
-                Скачать моды
-              </Button>
+      <section id="home" className="pt-20 pb-20">
+        <div className="w-full">
+          <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden animate-fade-in">
+            <img 
+              src="https://i.ytimg.com/vi/GI0aLqktl9A/maxresdefault.jpg" 
+              alt="DayZ Server" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-8 text-center">
+              <Badge className="mb-4 bg-primary/20 text-primary border-primary backdrop-blur-sm">
+                <Icon name="Circle" className="mr-1 fill-green-500 text-green-500" size={12} />
+                Онлайн: {serverStats.online}/{serverStats.maxPlayers}
+              </Badge>
+              <div className="flex flex-wrap gap-4 justify-center mt-6">
+                <Button size="lg" className="text-lg px-8" onClick={() => window.open('steam://connect/your-server-ip:port', '_blank')}>
+                  <Icon name="Play" className="mr-2" size={20} />
+                  Начать играть
+                </Button>
+                <Button size="lg" variant="outline" className="text-lg px-8 backdrop-blur-sm" onClick={() => scrollToSection('downloads')}>
+                  <Icon name="Download" className="mr-2" size={20} />
+                  Скачать моды
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
+        <div className="container mx-auto px-4">
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-4xl mx-auto">
             <Card className="text-center animate-scale-in">
