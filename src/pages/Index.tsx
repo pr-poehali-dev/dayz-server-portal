@@ -315,26 +315,28 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-center mb-12">Загрузки</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {downloads.map((download, index) => (
-              <Card key={index} className="hover:border-primary transition-colors cursor-pointer group">
+              <Card key={index} className="hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer group hover:-translate-y-1">
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3">
-                      <Icon name={download.icon as any} className="text-primary mt-1" size={24} />
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                        <Icon name={download.icon as any} className="text-primary group-hover:scale-110 transition-transform" size={24} />
+                      </div>
                       <div>
                         <CardTitle className="group-hover:text-primary transition-colors">{download.title}</CardTitle>
-                        <CardDescription>{download.description}</CardDescription>
+                        <CardDescription className="group-hover:text-foreground/80 transition-colors">{download.description}</CardDescription>
                       </div>
                     </div>
-                    <Badge variant="outline">{download.size}</Badge>
+                    <Badge variant="outline" className="group-hover:border-primary group-hover:text-primary transition-colors">{download.size}</Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <Button 
-                    className="w-full" 
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all" 
                     variant="outline"
                     onClick={() => window.open(download.url, '_blank')}
                   >
-                    <Icon name="Download" className="mr-2" size={18} />
+                    <Icon name="Download" className="mr-2 group-hover:animate-bounce" size={18} />
                     Скачать
                   </Button>
                 </CardContent>
