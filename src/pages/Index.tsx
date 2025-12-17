@@ -35,25 +35,29 @@ const Index = () => {
       title: 'DayZ SA Launcher',
       description: 'Основной лаунчер для подключения к серверу',
       size: '45 MB',
-      icon: 'Rocket'
+      icon: 'Rocket',
+      url: 'https://example.com/dayz-launcher.exe'
     },
     {
       title: 'Модпак сервера',
       description: 'Обязательные моды для игры на нашем сервере',
       size: '2.3 GB',
-      icon: 'Package'
+      icon: 'Package',
+      url: 'https://example.com/server-modpack.zip'
     },
     {
       title: 'Discord',
       description: 'Присоединяйся к нашему сообществу',
       size: 'Web',
-      icon: 'MessageSquare'
+      icon: 'MessageSquare',
+      url: 'https://discord.gg/your-server'
     },
     {
       title: 'Правила (PDF)',
       description: 'Полный свод правил сервера',
       size: '1.2 MB',
-      icon: 'FileText'
+      icon: 'FileText',
+      url: 'https://example.com/server-rules.pdf'
     }
   ];
 
@@ -126,7 +130,7 @@ const Index = () => {
                 Контакты
               </button>
             </div>
-            <Button className="hidden md:flex">
+            <Button className="hidden md:flex" onClick={() => window.open('https://discord.gg/your-server', '_blank')}>
               <Icon name="Users" className="mr-2" size={18} />
               Discord
             </Button>
@@ -148,7 +152,7 @@ const Index = () => {
               Хардкорный PvP/PvE сервер с модами, активным комьюнити и честной администрацией
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8">
+              <Button size="lg" className="text-lg px-8" onClick={() => window.open('steam://connect/your-server-ip:port', '_blank')}>
                 <Icon name="Play" className="mr-2" size={20} />
                 Начать играть
               </Button>
@@ -321,7 +325,11 @@ const Index = () => {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <Button className="w-full" variant="outline">
+                  <Button 
+                    className="w-full" 
+                    variant="outline"
+                    onClick={() => window.open(download.url, '_blank')}
+                  >
                     <Icon name="Download" className="mr-2" size={18} />
                     Скачать
                   </Button>
@@ -381,7 +389,7 @@ const Index = () => {
                 <CardDescription>Общайся с игроками</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" onClick={() => window.open('https://discord.gg/your-server', '_blank')}>
                   Присоединиться
                 </Button>
               </CardContent>
@@ -394,7 +402,7 @@ const Index = () => {
                 <CardDescription>Быстрая поддержка</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" onClick={() => window.open('https://t.me/your-support', '_blank')}>
                   Написать
                 </Button>
               </CardContent>
@@ -407,7 +415,7 @@ const Index = () => {
                 <CardDescription>Официальные запросы</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" onClick={() => window.location.href = 'mailto:support@your-server.com'}>
                   Отправить
                 </Button>
               </CardContent>
