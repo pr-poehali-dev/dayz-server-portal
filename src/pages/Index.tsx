@@ -351,13 +351,17 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-center mb-12">Новости и обновления</h2>
           <div className="space-y-6">
             {news.map((item, index) => (
-              <Card key={index} className="hover:border-primary transition-colors">
+              <Card 
+                key={index} 
+                className="hover:border-primary hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:-translate-x-2 animate-fade-in" 
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
-                    <Badge>{item.tag}</Badge>
+                    <Badge className="hover:scale-110 transition-transform cursor-default">{item.tag}</Badge>
                     <span className="text-sm text-muted-foreground">{item.date}</span>
                   </div>
-                  <CardTitle>{item.title}</CardTitle>
+                  <CardTitle className="hover:text-primary transition-colors">{item.title}</CardTitle>
                   <CardDescription className="text-base">{item.description}</CardDescription>
                 </CardHeader>
               </Card>
