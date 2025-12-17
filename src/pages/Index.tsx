@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,6 +8,29 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'info', 'stats', 'downloads', 'news', 'rules', 'contact'];
+      const scrollPosition = window.scrollY + 150;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (section: string) => {
     setActiveSection(section);
@@ -111,23 +134,47 @@ const Index = () => {
               <h1 className="text-2xl font-bold">DayZ Server</h1>
             </div>
             <div className="hidden md:flex gap-6">
-              <button onClick={() => scrollToSection('home')} className="hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('home')} 
+                className={`hover:text-primary transition-all relative ${activeSection === 'home' ? 'text-primary font-semibold' : ''}`}
+              >
                 Главная
+                {activeSection === 'home' && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary animate-scale-in"></span>}
               </button>
-              <button onClick={() => scrollToSection('info')} className="hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('info')} 
+                className={`hover:text-primary transition-all relative ${activeSection === 'info' ? 'text-primary font-semibold' : ''}`}
+              >
                 О сервере
+                {activeSection === 'info' && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary animate-scale-in"></span>}
               </button>
-              <button onClick={() => scrollToSection('downloads')} className="hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('downloads')} 
+                className={`hover:text-primary transition-all relative ${activeSection === 'downloads' ? 'text-primary font-semibold' : ''}`}
+              >
                 Загрузки
+                {activeSection === 'downloads' && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary animate-scale-in"></span>}
               </button>
-              <button onClick={() => scrollToSection('news')} className="hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('news')} 
+                className={`hover:text-primary transition-all relative ${activeSection === 'news' ? 'text-primary font-semibold' : ''}`}
+              >
                 Новости
+                {activeSection === 'news' && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary animate-scale-in"></span>}
               </button>
-              <button onClick={() => scrollToSection('rules')} className="hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('rules')} 
+                className={`hover:text-primary transition-all relative ${activeSection === 'rules' ? 'text-primary font-semibold' : ''}`}
+              >
                 Правила
+                {activeSection === 'rules' && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary animate-scale-in"></span>}
               </button>
-              <button onClick={() => scrollToSection('contact')} className="hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('contact')} 
+                className={`hover:text-primary transition-all relative ${activeSection === 'contact' ? 'text-primary font-semibold' : ''}`}
+              >
                 Контакты
+                {activeSection === 'contact' && <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary animate-scale-in"></span>}
               </button>
             </div>
             <Button className="hidden md:flex" onClick={() => window.open('https://discord.gg/your-server', '_blank')}>
